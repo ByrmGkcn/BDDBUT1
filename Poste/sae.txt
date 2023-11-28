@@ -1,0 +1,47 @@
+select sum(SALES.Global_Sales) as Vente, (JEUX.Year-2000) as Année, case
+  	when PUBLISHER.Publisher='Nintendo' then 'Nintendo'
+  	when PUBLISHER.Publisher='Activision' then 'Activison'
+  	when PUBLISHER.Publisher='Electronic Arts' then 'Electronic Arts'
+  	when PUBLISHER.Publisher='Sony Computer Entertainment' then 'Sony Computer Entertainment'
+  	when PUBLISHER.Publisher='Ubisoft' then 'Ubisoft'
+  	when PUBLISHER.Publisher='Take-Two Interactive' then 'Take-Two Interactive'
+  	when PUBLISHER.Publisher='Microsoft Games Studios' then 'Microsoft Games Studios'
+  	when PUBLISHER.Publisher='Sega' then 'Sega'
+  	else 'Autre'
+end as Editeurs from PUBLISHER,JEUX,SALES
+where PUBLISHER.idPublisher = JEUX.idPublisher and SALES.idSale = JEUX.idSale and Year>2000
+group by case
+  	when PUBLISHER.Publisher='Nintendo' then 'Nintendo'
+  	when PUBLISHER.Publisher='Activision' then 'Activison'
+  	when PUBLISHER.Publisher='Electronic Arts' then 'Electronic Arts'
+  	when PUBLISHER.Publisher='Sony Computer Entertainment' then 'Sony Computer Entertainment'
+  	when PUBLISHER.Publisher='Ubisoft' then 'Ubisoft'
+  	when PUBLISHER.Publisher='Take-Two Interactive' then 'Take-Two Interactive'
+  	when PUBLISHER.Publisher='Microsoft Games Studios' then 'Microsoft Games Studios'
+  	when PUBLISHER.Publisher='Sega' then 'Sega'
+  	else 'Autre'
+end,(JEUX.Year-2000)
+
+select sum(SALES.Global_Sales) as Vente, (JEUX.Year-2000) as Année, case
+  	when PUBLISHER.Publisher='Nintendo'
+  	or PUBLISHER.Publisher='Activision'
+  	or PUBLISHER.Publisher='Electronic Arts'
+  	or PUBLISHER.Publisher='Sony Computer Entertainment'
+  	or PUBLISHER.Publisher='Ubisoft'
+  	or PUBLISHER.Publisher='Take-Two Interactive'
+  	or PUBLISHER.Publisher='Microsoft Games Studios'
+  	or PUBLISHER.Publisher='Sega' then 'Connu'
+  	else 'Autre'
+end as Editeurs from PUBLISHER,JEUX,SALES
+where PUBLISHER.idPublisher = JEUX.idPublisher and SALES.idSale = JEUX.idSale and Year>2000
+group by case
+  	when PUBLISHER.Publisher='Nintendo'
+  	or PUBLISHER.Publisher='Activision'
+  	or PUBLISHER.Publisher='Electronic Arts'
+  	or PUBLISHER.Publisher='Sony Computer Entertainment'
+  	or PUBLISHER.Publisher='Ubisoft'
+  	or PUBLISHER.Publisher='Take-Two Interactive'
+  	or PUBLISHER.Publisher='Microsoft Games Studios'
+  	or PUBLISHER.Publisher='Sega' then 'Connu'
+  	else 'Autre'
+end,(JEUX.Year-2000)
